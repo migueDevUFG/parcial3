@@ -7,6 +7,8 @@ import com.ra.parcial3.repos.DepartamentosRepository;
 import com.ra.parcial3.repos.EmpleadosRepository;
 import com.ra.parcial3.util.NotFoundException;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +29,7 @@ public class DepartamentosService {
         final List<Departamentos> departamentoses = departamentosRepository.findAll(Sort.by("id"));
         return departamentoses.stream()
                 .map(departamentos -> mapToDTO(departamentos, new DepartamentosDTO()))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public DepartamentosDTO get(final Long id) {

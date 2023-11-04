@@ -7,6 +7,8 @@ import com.ra.parcial3.repos.DepartamentosRepository;
 import com.ra.parcial3.repos.MunicipiosRepository;
 import com.ra.parcial3.util.NotFoundException;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +29,7 @@ public class MunicipiosService {
         final List<Municipios> municipioses = municipiosRepository.findAll(Sort.by("id"));
         return municipioses.stream()
                 .map(municipios -> mapToDTO(municipios, new MunicipiosDTO()))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public MunicipiosDTO get(final Long id) {

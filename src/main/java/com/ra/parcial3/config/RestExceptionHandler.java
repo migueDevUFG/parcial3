@@ -5,6 +5,8 @@ import com.ra.parcial3.model.FieldError;
 import com.ra.parcial3.util.NotFoundException;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -39,7 +41,7 @@ public class RestExceptionHandler {
                     fieldError.setField(error.getField());
                     return fieldError;
                 })
-                .toList();
+                .collect(Collectors.toList());
         final ErrorResponse errorResponse = new ErrorResponse();
         errorResponse.setHttpStatus(HttpStatus.BAD_REQUEST.value());
         errorResponse.setException(exception.getClass().getSimpleName());

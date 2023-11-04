@@ -5,6 +5,8 @@ import com.ra.parcial3.model.EmpleadosDTO;
 import com.ra.parcial3.repos.EmpleadosRepository;
 import com.ra.parcial3.util.NotFoundException;
 import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -22,7 +24,7 @@ public class EmpleadosService {
         final List<Empleados> empleadoses = empleadosRepository.findAll(Sort.by("id"));
         return empleadoses.stream()
                 .map(empleados -> mapToDTO(empleados, new EmpleadosDTO()))
-                .toList();
+                .collect(Collectors.toList());
     }
 
     public EmpleadosDTO get(final Long id) {
