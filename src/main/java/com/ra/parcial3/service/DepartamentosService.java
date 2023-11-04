@@ -1,10 +1,9 @@
 package com.ra.parcial3.service;
 
 import com.ra.parcial3.domain.Departamentos;
-import com.ra.parcial3.domain.Empleados;
 import com.ra.parcial3.model.DepartamentosDTO;
 import com.ra.parcial3.repos.DepartamentosRepository;
-import com.ra.parcial3.repos.EmpleadosRepository;
+import com.ra.parcial3.repos.MunicipiosRepository;
 import com.ra.parcial3.util.NotFoundException;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,9 +16,11 @@ import org.springframework.stereotype.Service;
 public class DepartamentosService {
 
     private final DepartamentosRepository departamentosRepository;
+    private final MunicipiosRepository municipiosRepository;
 
-    public DepartamentosService(final DepartamentosRepository departamentosRepository) {
+    public DepartamentosService(final DepartamentosRepository departamentosRepository, MunicipiosRepository municipiosRepository) {
         this.departamentosRepository = departamentosRepository;
+        this.municipiosRepository = municipiosRepository;
     }
 
     public List<DepartamentosDTO> findAll() {

@@ -1,5 +1,6 @@
 package com.ra.parcial3.controller;
 
+import com.ra.parcial3.model.EmpleadoModificadoDTO;
 import com.ra.parcial3.model.EmpleadosDTO;
 import com.ra.parcial3.service.EmpleadosService;
 
@@ -62,9 +63,9 @@ public class EmpleadosResource {
 
     @PutMapping("/manejar/{id}")
     public String manejarEmpleados(@PathVariable(name = "id") final Long id,
-                                                @RequestBody @Valid final EmpleadosDTO empleadosDTO) {
-        empleadosService.update(id, empleadosDTO);
-        return empleadosDTO.getMensaje() + empleadosDTO.getMensaje();
+                                                @RequestBody @Valid final EmpleadoModificadoDTO empleadoModificadoDTO) {
+        empleadosService.manejarEmpleados(id, empleadoModificadoDTO);
+        return empleadoModificadoDTO.getMensaje() + empleadoModificadoDTO.getMensaje();
     }
 
 }

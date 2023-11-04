@@ -1,8 +1,8 @@
 package com.ra.parcial3.service;
 
 import com.ra.parcial3.domain.Empleados;
+import com.ra.parcial3.model.EmpleadoModificadoDTO;
 import com.ra.parcial3.model.EmpleadosDTO;
-import com.ra.parcial3.model.ManejarEmpleadoDTO;
 import com.ra.parcial3.repos.EmpleadosRepository;
 import com.ra.parcial3.util.NotFoundException;
 import java.util.List;
@@ -47,6 +47,13 @@ public class EmpleadosService {
         empleadosRepository.save(empleados);
     }
 
+    public void manejarEmpleados(final Long id, final EmpleadoModificadoDTO empleadosmodDTO) {
+        final Empleados empleados = empleadosRepository.findById(id)
+                .orElseThrow(NotFoundException::new);
+        mapToEntity2(empleadosmodDTO, empleados);
+        empleadosRepository.save(empleados);
+    }
+
 
     public void delete(final Long id) {
         empleadosRepository.deleteById(id);
@@ -74,6 +81,20 @@ public class EmpleadosService {
         empleados.setSalario(empleadosDTO.getSalario());
         empleados.setActivo(empleadosDTO.getActivo());
         empleados.setCodigo(empleadosDTO.getCodigo());
+        return empleados;
+    }
+
+    private EmpleadoModificadoDTO mapToDTO2(final Empleados empleados, final EmpleadoModificadoDTO empleadoModificadoDTO) {
+
+        empleadoModificadoDTO.setActivo(empleados.getActivo());
+        empleadoModificadoDTO.setMensaje(empleados.getMensaje());
+        return empleadoModificadoDTO;
+    }
+
+    private Empleados mapToEntity2(final EmpleadoModificadoDTO empleadoModificadoDTO, final Empleados empleados) {
+        empleados.setActivo(empleados.getActivo());
+        empleados.setMensaje(empleados.getMensaje());
+
         return empleados;
     }
 
