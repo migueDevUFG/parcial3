@@ -2,8 +2,8 @@ package com.ra.parcial3.rest;
 
 import com.ra.parcial3.model.MunicipiosDTO;
 import com.ra.parcial3.service.MunicipiosService;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import jakarta.validation.Valid;
+
+import javax.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(value = "/api/municipioss", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/municipios", produces = MediaType.APPLICATION_JSON_VALUE)
 public class MunicipiosResource {
 
     private final MunicipiosService municipiosService;
@@ -39,7 +39,7 @@ public class MunicipiosResource {
     }
 
     @PostMapping
-    @ApiResponse(responseCode = "201")
+
     public ResponseEntity<Long> createMunicipios(
             @RequestBody @Valid final MunicipiosDTO municipiosDTO) {
         final Long createdId = municipiosService.create(municipiosDTO);
@@ -54,7 +54,7 @@ public class MunicipiosResource {
     }
 
     @DeleteMapping("/{id}")
-    @ApiResponse(responseCode = "204")
+
     public ResponseEntity<Void> deleteMunicipios(@PathVariable(name = "id") final Long id) {
         municipiosService.delete(id);
         return ResponseEntity.noContent().build();

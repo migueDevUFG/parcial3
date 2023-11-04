@@ -1,6 +1,6 @@
 package com.ra.parcial3.model;
 
-import jakarta.validation.constraints.Size;
+import javax.validation.constraints.Size;
 import lombok.Getter;
 import lombok.Setter;
 

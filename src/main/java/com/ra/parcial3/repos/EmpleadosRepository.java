@@ -4,5 +4,5 @@ import com.ra.parcial3.domain.Empleados;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface EmpleadosRepository extends JpaRepository<Empleados, Long> {
+public interface EmpleadosRepository extends IGenericRepo<Empleados, Long> {
 }

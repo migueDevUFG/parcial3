@@ -2,8 +2,8 @@ package com.ra.parcial3.rest;
 
 import com.ra.parcial3.model.DepartamentosDTO;
 import com.ra.parcial3.service.DepartamentosService;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
-import jakarta.validation.Valid;
+
+import javax.validation.Valid;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-@RequestMapping(value = "/api/departamentoss", produces = MediaType.APPLICATION_JSON_VALUE)
+@RequestMapping(value = "/api/departamentos", produces = MediaType.APPLICATION_JSON_VALUE)
 public class DepartamentosResource {
 
     private final DepartamentosService departamentosService;
@@ -40,7 +40,7 @@ public class DepartamentosResource {
     }
 
     @PostMapping
-    @ApiResponse(responseCode = "201")
+
     public ResponseEntity<Long> createDepartamentos(
             @RequestBody @Valid final DepartamentosDTO departamentosDTO) {
         final Long createdId = departamentosService.create(departamentosDTO);
@@ -55,7 +55,7 @@ public class DepartamentosResource {
     }
 
     @DeleteMapping("/{id}")
-    @ApiResponse(responseCode = "204")
+
     public ResponseEntity<Void> deleteDepartamentos(@PathVariable(name = "id") final Long id) {
         departamentosService.delete(id);
         return ResponseEntity.noContent().build();

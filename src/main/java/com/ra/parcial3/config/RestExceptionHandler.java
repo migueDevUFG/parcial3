@@ -3,7 +3,7 @@ package com.ra.parcial3.config;
 import com.ra.parcial3.model.ErrorResponse;
 import com.ra.parcial3.model.FieldError;
 import com.ra.parcial3.util.NotFoundException;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -53,14 +53,14 @@ public class RestExceptionHandler {
     public ResponseEntity<ErrorResponse> handleResponseStatus(
             final ResponseStatusException exception) {
         final ErrorResponse errorResponse = new ErrorResponse();
-        errorResponse.setHttpStatus(exception.getStatusCode().value());
+        errorResponse.setHttpStatus(exception.getStatus().value());
         errorResponse.setException(exception.getClass().getSimpleName());
         errorResponse.setMessage(exception.getMessage());
-        return new ResponseEntity<>(errorResponse, exception.getStatusCode());
+        return new ResponseEntity<>(errorResponse, exception.getStatus());
     }
 
     @ExceptionHandler(Throwable.class)
-    @ApiResponse(responseCode = "4xx/5xx", description = "Error")
+
     public ResponseEntity<ErrorResponse> handleThrowable(final Throwable exception) {
         exception.printStackTrace();
         final ErrorResponse errorResponse = new ErrorResponse();
