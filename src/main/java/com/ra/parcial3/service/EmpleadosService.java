@@ -2,6 +2,7 @@ package com.ra.parcial3.service;
 
 import com.ra.parcial3.domain.Empleados;
 import com.ra.parcial3.model.EmpleadosDTO;
+import com.ra.parcial3.model.ManejarEmpleadoDTO;
 import com.ra.parcial3.repos.EmpleadosRepository;
 import com.ra.parcial3.util.NotFoundException;
 import java.util.List;
@@ -46,6 +47,7 @@ public class EmpleadosService {
         empleadosRepository.save(empleados);
     }
 
+
     public void delete(final Long id) {
         empleadosRepository.deleteById(id);
     }
@@ -74,5 +76,7 @@ public class EmpleadosService {
         empleados.setCodigo(empleadosDTO.getCodigo());
         return empleados;
     }
+
+
 
 }

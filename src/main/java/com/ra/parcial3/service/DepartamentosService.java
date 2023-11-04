@@ -69,4 +69,8 @@ public class DepartamentosService {
         return departamentosRepository.existsByNombreDepartamentoIgnoreCase(nombreDepartamento);
     }
 
+    public Departamentos findByNombreDepartamento(final String nombreDepartamento) {
+        return departamentosRepository.findByNombreDepartamento(nombreDepartamento);
+    }
+
 }

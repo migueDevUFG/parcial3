@@ -1,4 +1,4 @@
-package com.ra.parcial3.rest;
+package com.ra.parcial3.controller;
 
 import com.ra.parcial3.model.MunicipiosDTO;
 import com.ra.parcial3.service.MunicipiosService;

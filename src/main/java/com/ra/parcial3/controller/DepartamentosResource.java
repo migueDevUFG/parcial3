@@ -1,5 +1,6 @@
-package com.ra.parcial3.rest;
+package com.ra.parcial3.controller;
 
+import com.ra.parcial3.domain.Departamentos;
 import com.ra.parcial3.model.DepartamentosDTO;
 import com.ra.parcial3.service.DepartamentosService;
 
@@ -60,5 +61,11 @@ public class DepartamentosResource {
         departamentosService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/{nombreDepartamento}")
+    public Departamentos findByNombreDepartamento(@PathVariable("nombreDepartamento") String nombreDepartamento){
+        return departamentosService.findByNombreDepartamento(nombreDepartamento);
+    }
+
 
 }

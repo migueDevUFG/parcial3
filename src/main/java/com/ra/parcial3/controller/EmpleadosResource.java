@@ -1,4 +1,4 @@
-package com.ra.parcial3.rest;
+package com.ra.parcial3.controller;
 
 import com.ra.parcial3.model.EmpleadosDTO;
 import com.ra.parcial3.service.EmpleadosService;
@@ -58,6 +58,13 @@ public class EmpleadosResource {
     public ResponseEntity<Void> deleteEmpleados(@PathVariable(name = "id") final Long id) {
         empleadosService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping("/manejar/{id}")
+    public String manejarEmpleados(@PathVariable(name = "id") final Long id,
+                                                @RequestBody @Valid final EmpleadosDTO empleadosDTO) {
+        empleadosService.update(id, empleadosDTO);
+        return empleadosDTO.getMensaje() + empleadosDTO.getMensaje();
     }
 
 }
