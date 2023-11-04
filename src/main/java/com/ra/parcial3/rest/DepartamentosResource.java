@@ -49,7 +49,7 @@ public class DepartamentosResource {
 
     @PutMapping("/{id}")
     public ResponseEntity<Long> updateDepartamentos(@PathVariable(name = "id") final Long id,
-            @RequestBody @Valid final DepartamentosDTO departamentosDTO) {
+                                                    @RequestBody @Valid final DepartamentosDTO departamentosDTO) {
         departamentosService.update(id, departamentosDTO);
         return ResponseEntity.ok(id);
     }

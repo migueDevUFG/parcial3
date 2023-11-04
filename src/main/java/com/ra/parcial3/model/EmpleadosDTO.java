@@ -29,4 +29,7 @@ public class EmpleadosDTO {
 
     private Boolean activo;
 
+    @Size(max = 255)
+    private String codigo;
+
 }

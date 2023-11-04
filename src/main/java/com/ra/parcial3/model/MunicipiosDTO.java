@@ -14,6 +14,7 @@ public class MunicipiosDTO {
     @Size(max = 255)
     private String nombreMunicipio;
 
-    private Long idDepartamento;
+    private Long departamentos;
 
 }
+

@@ -20,14 +20,23 @@ public class Municipios {
 
     @Id
     @Column(nullable = false, updatable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name = "primary_sequence",
+            sequenceName = "primary_sequence",
+            allocationSize = 1,
+            initialValue = 10000
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "primary_sequence"
+    )
     private Long id;
 
     @Column
     private String nombreMunicipio;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id_departamento_id")
-    private Departamentos idDepartamento;
+    @JoinColumn(name = "departamentos_id")
+    private Departamentos departamentos;
 
 }

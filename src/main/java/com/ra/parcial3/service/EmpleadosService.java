@@ -59,6 +59,7 @@ public class EmpleadosService {
         empleadosDTO.setTelefono(empleados.getTelefono());
         empleadosDTO.setSalario(empleados.getSalario());
         empleadosDTO.setActivo(empleados.getActivo());
+        empleadosDTO.setCodigo(empleados.getCodigo());
         return empleadosDTO;
     }
 
@@ -70,6 +71,7 @@ public class EmpleadosService {
         empleados.setTelefono(empleadosDTO.getTelefono());
         empleados.setSalario(empleadosDTO.getSalario());
         empleados.setActivo(empleadosDTO.getActivo());
+        empleados.setCodigo(empleadosDTO.getCodigo());
         return empleados;
     }
 

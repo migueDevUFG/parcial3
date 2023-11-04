@@ -20,7 +20,7 @@ public class MunicipiosService {
     private final DepartamentosRepository departamentosRepository;
 
     public MunicipiosService(final MunicipiosRepository municipiosRepository,
-            final DepartamentosRepository departamentosRepository) {
+                             final DepartamentosRepository departamentosRepository) {
         this.municipiosRepository = municipiosRepository;
         this.departamentosRepository = departamentosRepository;
     }
@@ -58,15 +58,15 @@ public class MunicipiosService {
     private MunicipiosDTO mapToDTO(final Municipios municipios, final MunicipiosDTO municipiosDTO) {
         municipiosDTO.setId(municipios.getId());
         municipiosDTO.setNombreMunicipio(municipios.getNombreMunicipio());
-        municipiosDTO.setIdDepartamento(municipios.getIdDepartamento() == null ? null : municipios.getIdDepartamento().getId());
+        municipiosDTO.setDepartamentos(municipios.getDepartamentos() == null ? null : municipios.getDepartamentos().getId());
         return municipiosDTO;
     }
 
     private Municipios mapToEntity(final MunicipiosDTO municipiosDTO, final Municipios municipios) {
         municipios.setNombreMunicipio(municipiosDTO.getNombreMunicipio());
-        final Departamentos idDepartamento = municipiosDTO.getIdDepartamento() == null ? null : departamentosRepository.findById(municipiosDTO.getIdDepartamento())
-                .orElseThrow(() -> new NotFoundException("idDepartamento not found"));
-        municipios.setIdDepartamento(idDepartamento);
+        final Departamentos departamentos = municipiosDTO.getDepartamentos() == null ? null : departamentosRepository.findById(municipiosDTO.getDepartamentos())
+                .orElseThrow(() -> new NotFoundException("departamentos not found"));
+        municipios.setDepartamentos(departamentos);
         return municipios;
     }
 

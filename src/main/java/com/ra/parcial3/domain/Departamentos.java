@@ -22,17 +22,22 @@ public class Departamentos {
 
     @Id
     @Column(nullable = false, updatable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name = "primary_sequence",
+            sequenceName = "primary_sequence",
+            allocationSize = 1,
+            initialValue = 10000
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "primary_sequence"
+    )
     private Long id;
 
     @Column
     private String nombreDepartamento;
 
-    @OneToMany(mappedBy = "idDepartamento")
-    private Set<Municipios> idMunicipios;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "empleados_id")
-    private Empleados empleados;
+    @OneToMany(mappedBy = "departamentos")
+    private Set<Municipios> municipios;
 
 }

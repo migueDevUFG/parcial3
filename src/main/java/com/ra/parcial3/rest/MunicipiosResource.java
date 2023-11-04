@@ -48,7 +48,7 @@ public class MunicipiosResource {
 
     @PutMapping("/{id}")
     public ResponseEntity<Long> updateMunicipios(@PathVariable(name = "id") final Long id,
-            @RequestBody @Valid final MunicipiosDTO municipiosDTO) {
+                                                 @RequestBody @Valid final MunicipiosDTO municipiosDTO) {
         municipiosService.update(id, municipiosDTO);
         return ResponseEntity.ok(id);
     }
@@ -61,3 +61,4 @@ public class MunicipiosResource {
     }
 
 }
+

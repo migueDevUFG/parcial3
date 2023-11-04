@@ -22,7 +22,16 @@ public class Empleados {
 
     @Id
     @Column(nullable = false, updatable = false)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @SequenceGenerator(
+            name = "primary_sequence",
+            sequenceName = "primary_sequence",
+            allocationSize = 1,
+            initialValue = 10000
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "primary_sequence"
+    )
     private Long id;
 
     @Column
@@ -47,7 +56,7 @@ public class Empleados {
     @Column
     private Boolean activo;
 
-    @OneToMany(mappedBy = "empleados")
-    private Set<Departamentos> idDepartamento;
+    @Column
+    private String codigo;
 
 }

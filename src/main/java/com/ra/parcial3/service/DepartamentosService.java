@@ -17,12 +17,9 @@ import org.springframework.stereotype.Service;
 public class DepartamentosService {
 
     private final DepartamentosRepository departamentosRepository;
-    private final EmpleadosRepository empleadosRepository;
 
-    public DepartamentosService(final DepartamentosRepository departamentosRepository,
-            final EmpleadosRepository empleadosRepository) {
+    public DepartamentosService(final DepartamentosRepository departamentosRepository) {
         this.departamentosRepository = departamentosRepository;
-        this.empleadosRepository = empleadosRepository;
     }
 
     public List<DepartamentosDTO> findAll() {
@@ -56,19 +53,15 @@ public class DepartamentosService {
     }
 
     private DepartamentosDTO mapToDTO(final Departamentos departamentos,
-            final DepartamentosDTO departamentosDTO) {
+                                      final DepartamentosDTO departamentosDTO) {
         departamentosDTO.setId(departamentos.getId());
         departamentosDTO.setNombreDepartamento(departamentos.getNombreDepartamento());
-        departamentosDTO.setEmpleados(departamentos.getEmpleados() == null ? null : departamentos.getEmpleados().getId());
         return departamentosDTO;
     }
 
     private Departamentos mapToEntity(final DepartamentosDTO departamentosDTO,
-            final Departamentos departamentos) {
+                                      final Departamentos departamentos) {
         departamentos.setNombreDepartamento(departamentosDTO.getNombreDepartamento());
-        final Empleados empleados = departamentosDTO.getEmpleados() == null ? null : empleadosRepository.findById(departamentosDTO.getEmpleados())
-                .orElseThrow(() -> new NotFoundException("empleados not found"));
-        departamentos.setEmpleados(empleados);
         return departamentos;
     }
 

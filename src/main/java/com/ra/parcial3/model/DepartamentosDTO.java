@@ -14,6 +14,4 @@ public class DepartamentosDTO {
     @Size(max = 255)
     private String nombreDepartamento;
 
-    private Long empleados;
-
 }
