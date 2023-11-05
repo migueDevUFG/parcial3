@@ -8,6 +8,4 @@ public interface DepartamentosRepository extends IGenericRepo<Departamentos, Lon
 
     boolean existsByNombreDepartamentoIgnoreCase(String nombreDepartamento);
 
-    public Departamentos findByNombreDepartamento(String nombreDepartamento);
-
 }

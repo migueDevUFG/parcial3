@@ -1,11 +1,15 @@
 package com.ra.parcial3.service;
 
 import com.ra.parcial3.domain.Departamentos;
+import com.ra.parcial3.domain.Empleados;
+import com.ra.parcial3.domain.Municipios;
 import com.ra.parcial3.model.DepartamentosDTO;
+import com.ra.parcial3.model.MunicipiosDTO;
 import com.ra.parcial3.repos.DepartamentosRepository;
-import com.ra.parcial3.repos.MunicipiosRepository;
+import com.ra.parcial3.repos.EmpleadosRepository;
 import com.ra.parcial3.util.NotFoundException;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Sort;
@@ -16,11 +20,9 @@ import org.springframework.stereotype.Service;
 public class DepartamentosService {
 
     private final DepartamentosRepository departamentosRepository;
-    private final MunicipiosRepository municipiosRepository;
 
-    public DepartamentosService(final DepartamentosRepository departamentosRepository, MunicipiosRepository municipiosRepository) {
+    public DepartamentosService(final DepartamentosRepository departamentosRepository) {
         this.departamentosRepository = departamentosRepository;
-        this.municipiosRepository = municipiosRepository;
     }
 
     public List<DepartamentosDTO> findAll() {
@@ -70,8 +72,22 @@ public class DepartamentosService {
         return departamentosRepository.existsByNombreDepartamentoIgnoreCase(nombreDepartamento);
     }
 
-    public Departamentos findByNombreDepartamento(final String nombreDepartamento) {
-        return departamentosRepository.findByNombreDepartamento(nombreDepartamento);
+    public List<MunicipiosDTO> getMunicipiosByDepartamento(Long departamentoId) {
+        Departamentos departamento = departamentosRepository.findById(departamentoId)
+                .orElseThrow(NotFoundException::new);
+
+        Set<Municipios> municipios = departamento.getMunicipios();
+        return municipios.stream()
+                .map(this::mapMunicipiosToDTO)
+                .collect(Collectors.toList());
+    }
+
+    private MunicipiosDTO mapMunicipiosToDTO(Municipios municipio) {
+        MunicipiosDTO municipioDTO = new MunicipiosDTO();
+        municipioDTO.setId(municipio.getId());
+        municipioDTO.setNombreMunicipio(municipio.getNombreMunicipio());
+        municipioDTO.setDepartamentos(municipio.getDepartamentos().getId());
+        return municipioDTO;
     }
 
 }

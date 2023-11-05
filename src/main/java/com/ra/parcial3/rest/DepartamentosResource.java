@@ -1,7 +1,7 @@
-package com.ra.parcial3.controller;
+package com.ra.parcial3.rest;
 
-import com.ra.parcial3.domain.Departamentos;
 import com.ra.parcial3.model.DepartamentosDTO;
+import com.ra.parcial3.model.MunicipiosDTO;
 import com.ra.parcial3.service.DepartamentosService;
 
 import javax.validation.Valid;
@@ -62,10 +62,11 @@ public class DepartamentosResource {
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/{nombreDepartamento}")
-    public Departamentos findByNombreDepartamento(@PathVariable("nombreDepartamento") String nombreDepartamento){
-        return departamentosService.findByNombreDepartamento(nombreDepartamento);
+    @GetMapping("/{id}/municipios")
+    public ResponseEntity<List<MunicipiosDTO>> getMunicipiosByDepartamento(
+            @PathVariable(name = "id") final Long id) {
+        List<MunicipiosDTO> municipios = departamentosService.getMunicipiosByDepartamento(id);
+        return ResponseEntity.ok(municipios);
     }
-
 
 }

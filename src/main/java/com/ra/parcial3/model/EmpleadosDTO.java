@@ -32,7 +32,4 @@ public class EmpleadosDTO {
     @Size(max = 255)
     private String codigo;
 
-    @Size(max = 255)
-    private String mensaje;
-
 }
